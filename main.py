@@ -15,7 +15,6 @@ if __name__ == "__main__":
     
     # Generate Dataset
     if not os.path.exists('./files/languages.csv'):
-        num_rows = int(input("Enter the number of rows for CSV: "))
-        main_app.generate_dataset(num_rows)
+        main_app.generate_dataset(2)
     else:
         print("languages.csv already exists. Skipping dataset generation.")

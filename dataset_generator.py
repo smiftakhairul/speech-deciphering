@@ -22,7 +22,7 @@ class DatasetGenerator:
         translation = self.translator.translate(text, dest=dest_language)
         return translation.text
 
-    def generate_and_translate(self, num_rows=100):
+    def generate_and_translate(self, num_rows=2):
         data = []
         for _ in range(num_rows):
             english_sentence = self.generate_random_english_sentence()
