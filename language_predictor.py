@@ -3,7 +3,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import svm
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report
+from stats_visualizer import StatsVisualizer
 import joblib
 
 class LanguagePredictor:
@@ -13,6 +14,7 @@ class LanguagePredictor:
         self.model = None
         self.vectorizer = None
         self.languages = []
+        self.visualizer = StatsVisualizer(self.data_file)
     
     def train(self):
         data = pd.read_csv(self.data_file)
@@ -34,7 +36,12 @@ class LanguagePredictor:
         self.model.fit(X_train, y_train)
         y_pred = self.model.predict(X_test)
         acc = accuracy_score(y_test, y_pred)
+        classified_report = classification_report(y_test, y_pred)
         print("Model accuracy:", acc)
+        print("Classification Report:")
+        print(classified_report)
+        self.visualizer.predictor_confusion_matrix(y_test, y_pred, self.languages)
+        self.visualizer.predictor_classification_report(classified_report)
     
     def predict(self, sentence):
         predicted_language = self.model.predict([sentence])[0]

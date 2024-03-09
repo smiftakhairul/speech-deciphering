@@ -1,7 +1,7 @@
 import os
 from dataset_generator import DatasetGenerator
 from language_predictor import LanguagePredictor
-from stats_visualizer import DatasetVisualizer
+from stats_visualizer import StatsVisualizer
 from utils import Utils
 
 class MainApplication:
@@ -12,7 +12,7 @@ class MainApplication:
         self.utils = Utils()
         self.dataset = DatasetGenerator(self.languages)
         self.predictor = LanguagePredictor(self.data_file, self.model_file)
-        self.visualizer = DatasetVisualizer(self.data_file)
+        self.visualizer = StatsVisualizer(self.data_file)
 
     def generate_dataset(self, num_rows):
         df = self.dataset.generate_and_translate(num_rows)
