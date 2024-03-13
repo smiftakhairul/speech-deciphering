@@ -5,3 +5,5 @@ vendor/
 .DS_Store
 __pycache__/
 # files/
+*/__pycache__/
+*/vendor/
